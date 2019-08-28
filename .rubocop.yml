@@ -12,3 +12,8 @@ Style/ClassAndModuleChildren:
   Exclude:
     - 'test/**/*'
     - 'spec/**/*'
+
+Metrics/BlockLength:
+  ExcludedMethods:
+    - context
+    - describe

@@ -7,6 +7,10 @@ class Devices < Grape::API
   prefix :api
 
   resource :devices do
+    get '/' do
+      Device.all
+    end
+
     params do
       requires :serial_number, type: String, desc: 'Serial number'
       optional :registered_at, type: DateTime, desc: 'Registration date'
