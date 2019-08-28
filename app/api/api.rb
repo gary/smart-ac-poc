@@ -2,7 +2,7 @@
 
 # TODO: Document public API
 # :nodoc:
-class Devices < Grape::API
+class API < Grape::API
   format :json
   prefix :api
 

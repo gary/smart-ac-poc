@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Devices do
+RSpec.describe API do
   describe 'GET /api/devices/' do
     before do
       %w[1 2].each do |index|

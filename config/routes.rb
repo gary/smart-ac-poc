@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Devices => '/'
+  mount API => '/'
 end
