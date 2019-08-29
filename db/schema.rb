@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_171244) do
+ActiveRecord::Schema.define(version: 2019_08_29_160042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2019_08_28_171244) do
     t.string "serial_number", null: false
     t.datetime "registered_at", default: "2019-08-29 16:03:26", null: false
     t.string "firmware_version", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sensor_readings", force: :cascade do |t|
+    t.decimal "temperature", precision: 4, scale: 2, default: "30.0"
+    t.integer "humidity", default: 60, null: false
+    t.integer "carbon_monoxide", default: 1, null: false
+    t.string "status", limit: 150, default: "ok", null: false
+    t.datetime "read_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

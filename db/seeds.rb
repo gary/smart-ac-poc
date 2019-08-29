@@ -8,3 +8,5 @@
 Device.create(serial_number: '1',
               registered_at: DateTime.current,
               firmware_version: '0')
+
+SensorReading.create!(read_at: DateTime.current)
