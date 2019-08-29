@@ -21,5 +21,19 @@ class API < Grape::API
                      registered_at: params[:registered_at],
                      firmware_version: params[:firmware_version])
     end
+
+    route_param :device_id do
+      resources 'sensor-readings' do
+        params do
+          requires :sensor_readings, type: Array do
+            # TODO: Better validate input
+          end
+        end
+        post '/' do
+          device = Device.find(params[:device_id])
+          device.sensor_readings.create!(params[:sensor_readings])
+        end
+      end
+    end
   end
 end
