@@ -7,6 +7,7 @@ AllCops:
     - 'config/**/*'
     - 'db/migrate/*'
     - 'db/schema.rb'
+    - 'node_modules/**/*'
 
 Style/ClassAndModuleChildren:
   Exclude:
