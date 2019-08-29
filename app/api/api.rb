@@ -28,8 +28,15 @@ class API < Grape::API
       end
 
       resources 'sensor-readings' do
+        params do
+          optional :start, type: DateTime
+        end
         get '/' do
-          @device.sensor_readings
+          if params.key?(:start)
+            @device.sensor_readings.where('read_at >= ?', params[:start])
+          else
+            @device.sensor_readings
+          end
         end
 
         params do

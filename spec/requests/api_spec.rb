@@ -102,6 +102,19 @@ RSpec.describe API do
                                   a_kind_of(Hash))
             expect(response).to have_http_status(:ok)
           end
+
+          context 'with a start timestamp' do
+            it 'lists all sensor readings read on or after the timestamp' do
+              get("/api/devices/#{device.id}/sensor-readings",
+                  params: {
+                    start: '2019-08-15'
+                  })
+
+              expect(JSON.parse(response.body))
+                .to contain_exactly(a_kind_of(Hash), a_kind_of(Hash))
+              expect(response).to have_http_status(:ok)
+            end
+          end
         end
       end
     end
