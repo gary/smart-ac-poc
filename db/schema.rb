@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_160042) do
+ActiveRecord::Schema.define(version: 2019_08_29_175326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "devices", force: :cascade do |t|
     t.string "serial_number", null: false
-    t.datetime "registered_at", default: "2019-08-29 16:03:26", null: false
+    t.datetime "registered_at", default: "2019-08-29 17:52:20", null: false
     t.string "firmware_version", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 2019_08_29_160042) do
     t.datetime "read_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "device_id", null: false
+    t.index ["device_id"], name: "index_sensor_readings_on_device_id"
   end
 
+  add_foreign_key "sensor_readings", "devices"
 end
