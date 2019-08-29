@@ -18,3 +18,4 @@ Metrics/BlockLength:
     - context
     - describe
     - resource
+    - route_param

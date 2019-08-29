@@ -30,10 +30,16 @@ class API < Grape::API
       resources 'sensor-readings' do
         params do
           optional :start, type: DateTime
+          optional :end, type: DateTime
         end
         get '/' do
-          if params.key?(:start)
+          if params.key?(:start) && params.key?(:end)
+            @device.sensor_readings.where('read_at BETWEEN ? AND ?',
+                                          params[:start], params[:end])
+          elsif params.key?(:start)
             @device.sensor_readings.where('read_at >= ?', params[:start])
+          elsif params.key?(:end)
+            @device.sensor_readings.where('read_at <= ?', params[:end])
           else
             @device.sensor_readings
           end

@@ -115,6 +115,33 @@ RSpec.describe API do
               expect(response).to have_http_status(:ok)
             end
           end
+
+          context 'with an end timestamp' do
+            it 'lists all sensor readings read on or before the timestamp' do
+              get("/api/devices/#{device.id}/sensor-readings",
+                  params: {
+                    end: '2019-08-05'
+                  })
+
+              expect(JSON.parse(response.body))
+                .to contain_exactly(a_kind_of(Hash))
+              expect(response).to have_http_status(:ok)
+            end
+          end
+
+          context 'with start and end timestamps' do
+            it 'lists all sensor readings on or between' \
+              'the start and end dates' do
+                get("/api/devices/#{device.id}/sensor-readings",
+                    params: {
+                      start: '2019-08-14', end: '2019-08-28'
+                    })
+
+                expect(JSON.parse(response.body))
+                  .to contain_exactly(a_kind_of(Hash))
+                expect(response).to have_http_status(:ok)
+              end
+          end
         end
       end
     end
