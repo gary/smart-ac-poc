@@ -23,15 +23,22 @@ class API < Grape::API
     end
 
     route_param :device_id do
+      before do
+        @device = Device.find(params[:device_id])
+      end
+
       resources 'sensor-readings' do
+        get '/' do
+          @device.sensor_readings
+        end
+
         params do
           requires :sensor_readings, type: Array do
             # TODO: Better validate input
           end
         end
         post '/' do
-          device = Device.find(params[:device_id])
-          device.sensor_readings.create!(params[:sensor_readings])
+          @device.sensor_readings.create!(params[:sensor_readings])
         end
       end
     end
