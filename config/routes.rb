@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :accounts
-  root to: 'home#index'
+  root to: 'dashboard#index'
 
   mount API => '/'
 end
