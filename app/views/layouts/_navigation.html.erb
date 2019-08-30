@@ -5,7 +5,8 @@
     <% if account_signed_in? %>
         <div class="col"></div>
         <div class="col">
-            devices | search |
+            <%= link_to("Devices", devices_path) %> |
+            search |
             <%= link_to("Sign Out", destroy_account_session_path, method: :delete) %>
         </div>
     <% end %>
