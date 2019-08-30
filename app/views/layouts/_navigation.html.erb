@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col">
+        <h1>Smart A/C Dashboard</h1>
+    </div>
+    <% if account_signed_in? %>
+        <div class="col"></div>
+        <div class="col">
+            devices | search |
+            <%= link_to("Sign Out", destroy_account_session_path, method: :delete) %>
+        </div>
+    <% end %>
+</div>
